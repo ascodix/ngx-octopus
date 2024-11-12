@@ -2,7 +2,9 @@
   "name": "@ngx-octopus/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "test": "nx run app-demo:test"
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "~18.2.0",
