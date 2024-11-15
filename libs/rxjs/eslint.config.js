@@ -24,6 +24,7 @@ module.exports = [
           style: 'kebab-case',
         },
       ],
+      'curly': ['error', 'all'],
     },
   },
   {
