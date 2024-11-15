@@ -1,11 +1,11 @@
 {
-  "name": "@ngx-octopus/source",
+  "name": "@ascodix/ngx-octopus",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
     "test": ""
   },
-  "private": true,
+  "private": false,
   "dependencies": {
     "@angular/animations": "~18.2.0",
     "@angular/common": "~18.2.0",
@@ -63,6 +63,7 @@
     "typescript-eslint": "^8.0.0"
   },
   "publishConfig": {
+    "access": "public",
     "@ascodix:registry": "https://npm.pkg.github.com"
   }
 }
