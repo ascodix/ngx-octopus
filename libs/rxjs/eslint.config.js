@@ -23,8 +23,7 @@ module.exports = [
           prefix: 'lib',
           style: 'kebab-case',
         },
-      ],
-      'curly': ['error', 'all'],
+      ]
     },
   },
   {
