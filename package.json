@@ -1,6 +1,6 @@
 {
   "name": "@ascodix/ngx-octopus",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "license": "MIT",
   "scripts": {
     "test": ""
@@ -64,6 +64,6 @@
   },
   "publishConfig": {
     "access": "public",
-    "@ascodix:registry": "https://npm.pkg.github.com"
+    "registry": "https://registry.npmjs.org"
   }
 }
