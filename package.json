@@ -64,6 +64,6 @@
   },
   "publishConfig": {
     "access": "public",
-    "@ascodix:registry": "https://npm.pkg.github.com"
+    "@ascodix:registry": "https://registry.npmjs.org"
   }
 }
