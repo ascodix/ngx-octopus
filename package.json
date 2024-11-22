@@ -64,7 +64,7 @@
   },
   "optionalDependencies": {
     "@nx/nx-linux-x64-gnu": "20.1.2"
-  }
+  },
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org"
