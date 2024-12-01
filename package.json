@@ -5,7 +5,7 @@
   "scripts": {
     "start-app-demo": "nx serve app-demo --port=5000",
     "test": "",
-    "build-rxjs": "nx build rxjs"
+    "build-rxjs": "nx reset && nx build rxjs"
   },
   "private": false,
   "dependencies": {
