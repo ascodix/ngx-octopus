@@ -1,0 +1,45 @@
+<div class="rxjs-console">
+  <div class="rxjs-console__button" [style.display]="accordionItem.expanded ? 'none' : ''">
+    <button  color="primary"
+      (click)="accordionItem.toggle()"
+      tabindex="0"
+      [attr.id]="'accordion-header-'"
+      [attr.aria-expanded]="accordionItem.expanded"
+      [attr.aria-controls]="'accordion-body-'">
+      <mat-icon>{{ accordionItem.expanded ? 'home' : 'home' }}</mat-icon>
+    </button>
+  </div>
+  <div class="rxjs-console__container" [style.display]="accordionItem.expanded ? '' : 'none'">
+    <div class="rxjs-console__container__button">
+      <button mat-mini-fab  color="primary"
+        (click)="accordionItem.toggle()">
+    <span class="example-accordion-item-description">
+        Click to {{ accordionItem.expanded ? 'close' : 'open' }}
+      </span>
+      </button>
+    </div>
+
+    <div>
+      <cdk-accordion class="example-accordion">
+        <cdk-accordion-item #accordionItem="cdkAccordionItem" class="example-accordion-item">
+          @if(accordionItem.expanded) {
+            <div
+              class="example-accordion-item-body"
+              role="region"
+              [style.display]="accordionItem.expanded ? '' : 'none'"
+              [attr.id]="'accordion-body-'"
+              [attr.aria-labelledby]="'accordion-header-'"
+            >
+              <lib-rxjs-viewer></lib-rxjs-viewer>
+              Lorem ipsum dolor, sit amet, consectetur adipisicing elit. Perferendis excepturi incidunt ipsum
+              deleniti labore, tempore non nam doloribus blanditiis veritatis illo autem iure aliquid ullam
+              rem tenetur deserunt velit culpa?
+            </div>
+          }
+        </cdk-accordion-item>
+      </cdk-accordion>
+    </div>
+  </div>
+</div>
+
+
