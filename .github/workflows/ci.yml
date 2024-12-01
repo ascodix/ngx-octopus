@@ -30,7 +30,7 @@ jobs:
           node-version: 20
           registry-url: https://npm.pkg.github.com/
       - run: npm ci --legacy-peer-deps --include=optional
-      - run: cd dist/
+      - run: cd ./dist/libs/rxjs
       - run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
