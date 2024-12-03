@@ -32,7 +32,6 @@ jobs:
       - run: npm ci --legacy-peer-deps --include=optional
       - run: npm run build-rxjs
       - run: cd ./dist/libs/rxjs
-      - run: ls -R
       - run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
