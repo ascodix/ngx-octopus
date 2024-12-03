@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: rxjs
+        working-directory: ./rxjs
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -34,8 +34,9 @@ jobs:
           registry-url: https://npm.pkg.github.com/
       - run: npm ci --legacy-peer-deps --include=optional
       - run: npm run build-rxjs
+      - run: pwd
       - run: cd ./dist/libs/rxjs
-      - run: ls -R
+      - run: pwd
       - run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
