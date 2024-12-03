@@ -7,15 +7,13 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: rxjs
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 22.11.0
       - uses: nrwl/nx-set-shas@v4.0.0
+      - working-directory: rxjs
       - run: npm ci --legacy-peer-deps --include=optional
       - run: npm run build-rxjs
       - run: npm test
