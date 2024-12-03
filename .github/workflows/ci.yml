@@ -13,9 +13,11 @@ jobs:
         with:
           node-version: 22.11.0
       - uses: nrwl/nx-set-shas@v4.0.0
-      - working-directory: rxjs
       - run: npm ci --legacy-peer-deps --include=optional
       - run: npm run build-rxjs
+        with:
+          working-directory: rxjs
+      - run: pwd
       - run: npm test
 
   publish-gpr:
@@ -32,7 +34,6 @@ jobs:
           registry-url: https://npm.pkg.github.com/
       - run: npm ci --legacy-peer-deps --include=optional
       - run: npm run build-rxjs
-      - run: pwd
       - run: cd ./dist/libs/rxjs
       - run: pwd
       - run: npm publish --access public
