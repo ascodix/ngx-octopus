@@ -27,15 +27,21 @@ jobs:
       packages: write
       contents: read
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v4
         with:
           node-version: 20
           registry-url: https://npm.pkg.github.com/
-      - run: npm ci --legacy-peer-deps --include=optional
-      - run: npm run build-rxjs
-      - run: cd ./dist/libs/rxjs
-      - run: pwd
-      - run: npm publish --access public
+      - name: Install
+        run: npm ci --legacy-peer-deps --include=optional
+        working-directory: ./angular-workspace
+      - name: Build
+        run: npm run build-rxjs
+        working-directory: ./angular-workspace
+      - name: Publish
+        run: npm publish --access public
+        working-directory: ./angular-workspace/libs/rxjs
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
