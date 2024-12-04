@@ -8,16 +8,20 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v4
         with:
           node-version: 22.11.0
-      - uses: nrwl/nx-set-shas@v4.0.0
-      - run: npm ci --legacy-peer-deps --include=optional
-      - run: npm run build-rxjs
-        with:
-          working-directory: rxjs
-      - run: pwd
+      - name: Setup Nx
+        uses: nrwl/nx-set-shas@v4.0.0
+      - name: Install
+        run: npm ci --legacy-peer-deps --include=optional
+        working-directory: ./angular-workspace
+      - name: Build
+        run: npm run build-rxjs
+        working-directory: ./angular-workspace
       - run: npm test
 
   publish-gpr:
@@ -32,7 +36,7 @@ jobs:
       - name: Setup Node.js environment
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22.11.0
           registry-url: https://npm.pkg.github.com/
       - name: Install
         run: npm ci --legacy-peer-deps --include=optional
