@@ -5,7 +5,7 @@
   "scripts": {
     "start-app-demo": "nx serve app-demo --port=5000",
     "app-demo-e2e": "nx e2e app-demo-e2e",
-    "test": "",
+    "test": "nx test rxjs",
     "build-rxjs": "nx build rxjs --configuration=production  --skip-nx-cache --verbose"
   },
   "private": false,

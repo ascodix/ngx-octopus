@@ -1,4 +1,4 @@
-import { EnvironmentInjector, InjectFlags, InjectionToken, Injector, Type } from '@angular/core';
+import { EnvironmentInjector, InjectFlags, InjectionToken, Type } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 export class RootInjector {
