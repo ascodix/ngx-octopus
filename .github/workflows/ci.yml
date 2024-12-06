@@ -41,6 +41,6 @@ jobs:
       - name: Build
         run: npm run build-rxjs
       - name: Publish
-        run: cd dist/libs/rxjs && npm publish --access public --verbose
+        run: npm publish --access public --verbose dist/libs/rxjs
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
