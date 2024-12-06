@@ -1,6 +1,6 @@
 {
   "name": "@ascodix/ngx-octopus",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "license": "MIT",
   "scripts": {
     "start-app-demo": "nx serve app-demo --port=5000",
