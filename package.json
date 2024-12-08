@@ -6,7 +6,11 @@
     "start-app-demo": "nx serve app-demo --port=5000",
     "app-demo-e2e": "nx e2e app-demo-e2e",
     "test": "nx test rxjs",
-    "build-rxjs": "nx build rxjs --configuration=production  --skip-nx-cache --verbose"
+    "build-rxjs": "nx build rxjs --configuration=production --skip-nx-cache",
+    "reorganize-docs-dir": "node -e \"require('fs').cpSync('./docs/browser', './docs', {recursive: true}); require('fs').rmdirSync('./docs/browser', {recursive: true});",
+    "reorganize-docs-local-dir": "node -e \"require('fs').cpSync('./docs-local/browser', './docs-local', {recursive: true}); require('fs').rmdirSync('./docs-local/browser', {recursive: true});",
+    "build-app-demo-for-deploy": "nx build app-demo --output-path=docs --configuration=production --base-href=/ngx-octopus/ --prerender=false --ssr=false && npm run reorganize-docs-dir",
+    "build-app-demo-local-for-deploy": "nx build app-demo --output-path=docs-local --configuration=production --skip-nx-cache --prerender=false --ssr=false && npm run reorganize-docs-local-dir"
   },
   "private": false,
   "dependencies": {
@@ -55,6 +59,7 @@
     "@types/jest": "^29.5.12",
     "@types/node": "18.16.9",
     "@typescript-eslint/utils": "^8.0.0",
+    "angular-cli-ghpages": "^2.0.3",
     "angular-eslint": "^18.3.0",
     "autoprefixer": "^10.4.0",
     "eslint": "^9.8.0",

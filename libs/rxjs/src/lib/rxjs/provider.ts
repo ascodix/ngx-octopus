@@ -3,7 +3,7 @@ import {
   ApplicationRef, ComponentRef, EnvironmentInjector,
   EnvironmentProviders,
   inject, Injector,
-  makeEnvironmentProviders, runInInjectionContext
+  makeEnvironmentProviders, RendererFactory2, runInInjectionContext
 } from '@angular/core';
 import { RxjsService } from './rxjs.service';
 import { RootInjector } from './root-injector';
@@ -17,20 +17,20 @@ export function provideNgxOcpRxjs(): EnvironmentProviders {
       provide: APP_INITIALIZER,
       multi: true,
       useFactory: initRxjsServiceService,
-      deps: [ApplicationRef, DOCUMENT, EnvironmentInjector]
+      deps: [ApplicationRef, DOCUMENT, EnvironmentInjector, RendererFactory2]
     }
   ]);
 }
 
-  export function initRxjsServiceService(ref: ApplicationRef, document: Document, injector: EnvironmentInjector) {
+  export function initRxjsServiceService(ref: ApplicationRef, document: Document, injector: EnvironmentInjector, rendererFactory: RendererFactory2) {
     return () =>
       new Promise((resolve, reject) => {
-        console.log('before init');
+        console.log('before init', rendererFactory);
         RootInjector.setInjector(injector);
         const rxjsService = RootInjector.get(RxjsService);
 
         if (rxjsService) {
-          rxjsService.init(ref, document);
+          rxjsService.init(ref, document, rendererFactory);
         }
         console.log('after init');
         resolve(null);
