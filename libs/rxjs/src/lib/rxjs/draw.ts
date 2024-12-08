@@ -58,8 +58,9 @@ export function draw<T, G extends boolean, Z extends Observable<any>>(display: G
 }*/
 
 export function draw<T, G extends string>(name: G): <T>(source: Observable<T>) => Observable<T> {
-  console.log('DRAW');
+  console.log('TEST');
   const rxjsService = RootInjector.get(RxjsService);
+  console.log('DRAW TODO', rxjsService);
 
   rxjsService!.trace();
   return function <T>(source: Observable<T>): Observable<T> {

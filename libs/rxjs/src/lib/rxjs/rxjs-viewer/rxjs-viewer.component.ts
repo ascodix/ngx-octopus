@@ -21,7 +21,6 @@ export class RxjsViewerComponent {
 
   constructor(private rxjsService: RxjsService) {
     this.rxjsService.draw.subscribe(() => {
-      console.log('DRAW RXJS CONSOLE');
       this.items.push('Observable 1');
     });
   }

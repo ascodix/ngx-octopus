@@ -1,6 +1,7 @@
-import { ApplicationRef, createComponent, Injectable, Renderer2, RendererFactory2 } from '@angular/core';
+import { ApplicationRef, createComponent, inject, Injectable, Renderer2, RendererFactory2 } from '@angular/core';
 import { RxjsConsoleComponent } from '@ngx-octopus/rxjs';
 import { BehaviorSubject, filter, take } from 'rxjs';
+import { RXJS_CONFIGURATION, RxjsConfigOptions } from './rxjs_config';
 
 
 @Injectable({
@@ -14,6 +15,7 @@ export class RxjsService {
   applicationRef: ApplicationRef | undefined;
   document: Document | undefined;
   renderer: Renderer2 | undefined;
+  options: RxjsConfigOptions | undefined;
 
   constructor() {
   }
@@ -23,36 +25,42 @@ export class RxjsService {
     this.draw$.next(null);
   }
 
-  init(applicationRef: ApplicationRef, document: Document, rendererFactory: RendererFactory2) {
+  init(applicationRef: ApplicationRef, document: Document, rendererFactory: RendererFactory2, options: RxjsConfigOptions) {
+    console.log('INIT');
     this.applicationRef = applicationRef;
     this.document = document;
     this.renderer = rendererFactory.createRenderer(null, null);
+    this.options = options;
 
-    this.applicationRef.isStable.pipe(filter((value) => value === true), take(1)).subscribe((value) => {
+    if (options.console) {
+      this.createConsole();
+    }
+  }
 
-      if (value) {
+  private createConsole() {
+    if (this.applicationRef) {
+      this.applicationRef.isStable.pipe(filter((value) => value === true), take(1)).subscribe((value) => {
 
-        // Locate a DOM node that would be used as a host.
-        const hostElement: Element = document.body.children[0];
-        const consoleElement = this.renderer?.createElement('div');
-        consoleElement.classList.add("rxjs-console");
-        this.renderer?.insertBefore(hostElement, consoleElement, null);
+        if (value) {
 
-        // Get an `EnvironmentInjector` instance from the `ApplicationRef`.
-        const environmentInjector = this.applicationRef!.injector;
+          // Locate a DOM node that would be used as a host.
+          const hostElement: Element = document.body.children[0];
+          const consoleElement = this.renderer?.createElement('div');
+          consoleElement.classList.add("rxjs-console");
+          this.renderer?.insertBefore(hostElement, consoleElement, null);
 
-        // We can now create a `ComponentRef` instance.
-        const componentRef = createComponent(RxjsConsoleComponent, { hostElement: consoleElement, environmentInjector});
+          // Get an `EnvironmentInjector` instance from the `ApplicationRef`.
+          const environmentInjector = this.applicationRef!.injector;
 
-        // Last step is to register the newly created ref using the `ApplicationRef` instance // to include the component view into change detection cycles.
-        this.applicationRef!.attachView(componentRef.hostView);
-        componentRef.changeDetectorRef.detectChanges();
-      }
+          // We can now create a `ComponentRef` instance.
+          const componentRef = createComponent(RxjsConsoleComponent, { hostElement: consoleElement, environmentInjector});
 
-    })
+          // Last step is to register the newly created ref using the `ApplicationRef` instance // to include the component view into change detection cycles.
+          this.applicationRef!.attachView(componentRef.hostView);
+          componentRef.changeDetectorRef.detectChanges();
+        }
 
-
-
-
+      })
+    }
   }
 }

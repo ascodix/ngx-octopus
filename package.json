@@ -10,7 +10,9 @@
     "reorganize-docs-dir": "node -e \"require('fs').cpSync('./docs/browser', './docs', {recursive: true}); require('fs').rmdirSync('./docs/browser', {recursive: true});",
     "reorganize-docs-local-dir": "node -e \"require('fs').cpSync('./docs-local/browser', './docs-local', {recursive: true}); require('fs').rmdirSync('./docs-local/browser', {recursive: true});",
     "build-app-demo-for-deploy": "nx build app-demo --output-path=docs --configuration=production --base-href=/ngx-octopus/ --prerender=false --ssr=false && npm run reorganize-docs-dir",
-    "build-app-demo-local-for-deploy": "nx build app-demo --output-path=docs-local --configuration=production --skip-nx-cache --prerender=false --ssr=false && npm run reorganize-docs-local-dir"
+    "build-app-demo-local-for-deploy": "nx build app-demo --output-path=docs-local --configuration=production --skip-nx-cache --prerender=false --ssr=false && npm run reorganize-docs-local-dir",
+    "run-app-demo-local": "http-server docs-local/ -o",
+    "build-and-run-app-demo-local": "npm run build-app-demo-local-for-deploy && npm run run-app-demo-local"
   },
   "private": false,
   "dependencies": {
