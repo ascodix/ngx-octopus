@@ -1,7 +1,41 @@
 # rxjs
 
-This library was generated with [Nx](https://nx.dev).
+## Installing
 
-## Running unit tests
+```bash
+$ npm install --save @ascodix/ngx-octopus
+```
 
-Run `nx test rxjs` to execute the unit tests.
+## Quickstart
+
+Provide NgxMask providers with `provideNgxOcpRxjs` function.
+
+### With default config options application level
+
+```typescript
+import { provideNgxOcpRxjs } from '@ascodix/ngx-octopus/rxjs';
+
+export const appConfig: ApplicationConfig = {
+    providers: [
+        (...)
+        provideNgxOcpRxjs(),
+        (...)
+    ]
+};
+```
+
+### Passing your own rxjs config options
+
+```typescript
+import { provideNgxOcpRxjs, withRxjsConfig } from '@ascodix/ngx-octopus/rxjs';
+
+export const appConfig: ApplicationConfig = {
+    providers: [
+        (...)
+        provideNgxOcpRxjs(withRxjsConfig({
+          console: true
+        })),
+        (...)
+    ]
+};
+```

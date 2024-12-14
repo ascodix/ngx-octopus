@@ -8,22 +8,44 @@
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:application",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/apps/app-demo",
         "index": "apps/app-demo/src/index.html",
         "browser": "apps/app-demo/src/main.ts",
-        "polyfills": ["zone.js"],
+        "polyfills": [
+          "zone.js"
+        ],
         "tsConfig": "apps/app-demo/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
           {
             "glob": "**/*",
             "input": "apps/app-demo/public"
+          },
+          {
+            "glob": "**/*.md",
+            "input": ".",
+            "output": "."
           }
         ],
-        "styles": ["apps/app-demo/src/styles.scss"],
-        "scripts": [],
+        "styles": [
+          "apps/app-demo/src/styles.scss",
+          "node_modules/prismjs/themes/prism-okaidia.css",
+          "node_modules/prismjs/plugins/line-numbers/prism-line-numbers.css",
+          "node_modules/prismjs/plugins/line-highlight/prism-line-highlight.css",
+          "node_modules/prismjs/plugins/command-line/prism-command-line.css"
+        ],
+        "scripts": [
+          "node_modules/prismjs/prism.js",
+          "node_modules/prismjs/components/prism-csharp.min.js",
+          "node_modules/prismjs/components/prism-css.min.js",
+          "node_modules/prismjs/plugins/line-numbers/prism-line-numbers.js",
+          "node_modules/prismjs/plugins/line-highlight/prism-line-highlight.js",
+          "node_modules/prismjs/plugins/command-line/prism-command-line.js"
+        ],
         "server": "apps/app-demo/src/main.server.ts",
         "prerender": true,
         "ssr": {
@@ -49,7 +71,13 @@
         "development": {
           "optimization": false,
           "extractLicenses": false,
-          "sourceMap": true
+          "sourceMap": true,
+          "fileReplacements": [
+            {
+              "replace": "apps/app-demo/src/environments/environment.ts",
+              "with": "apps/app-demo/src/environments/environment.development.ts"
+            }
+          ]
         }
       },
       "defaultConfiguration": "production"
@@ -77,7 +105,9 @@
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
       "options": {
         "jestConfig": "apps/app-demo/jest.config.ts"
       }

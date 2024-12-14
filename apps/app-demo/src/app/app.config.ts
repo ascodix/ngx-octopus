@@ -5,7 +5,8 @@ import { BrowserModule, provideClientHydration } from '@angular/platform-browser
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { provideNgxOcpRxjs, withRxjsConfig } from '@ngx-octopus/rxjs';
+import { provideNgxOcpRxjs, withRxjsConfig } from '@ascodix/ngx-octopus/rxjs';
+import { provideMarkdown } from 'ngx-markdown';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -19,5 +20,6 @@ export const appConfig: ApplicationConfig = {
     })),
     importProvidersFrom(BrowserModule),
     importProvidersFrom(BrowserAnimationsModule),
+    provideMarkdown()
   ],
 };

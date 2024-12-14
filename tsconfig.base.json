@@ -15,7 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@ngx-octopus/rxjs": ["libs/rxjs/src/index.ts"]
+      "@ascodix/ngx-octopus/rxjs": ["libs/rxjs/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

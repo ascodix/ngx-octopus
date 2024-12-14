@@ -1,40 +1,33 @@
-mat-toolbar{
-  position:fixed;
-  top:0;
-  z-index: 2;
-}
+.main-sidenav-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 
-mat-sidenav-container {
-  height:100%;
-}
+  &__sidenav {
+    width: 230px;
 
-// Move the content down so that it won't be hidden by the toolbar
-mat-sidenav {
-  width: 230px;
+    &__list {
+      padding: 0;
 
-  padding-top: 3.5rem;
-  transition: width 0.3s ease;
-  @media screen and (min-width: 600px) {
-    padding-top: 4rem;
+      .sub-header {
+        display: flex;
+        align-items: center;
+        gap: .5rem;
+        margin: 0;
+      }
+
+      .entry {
+        padding: 0.75rem 2rem;
+      }
+    }
   }
 
-  .entry{
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding:0.75rem;
-  }
 
 }
 
-// Move the content down so that it won't be hidden by the toolbar
-mat-sidenav-content{
-  padding-top: 3.5rem;
-  @media screen and (min-width: 600px) {
-    padding-top: 4rem;
-  }
+mat-sidenav-content {
+  padding-left: 20px;
+  padding-right: 20px;
 }
-
-/*.expanded {
-  width: 250px;
-}*!*/

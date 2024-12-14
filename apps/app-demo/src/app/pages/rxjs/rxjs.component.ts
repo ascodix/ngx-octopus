@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Subject, tap } from 'rxjs';
-import { draw, RxjsViewerComponent, RxjsViewerItemComponent } from '@ngx-octopus/rxjs';
+import { Subject } from 'rxjs';
+import { draw, RxjsViewerComponent, RxjsViewerItemComponent } from '@ascodix/ngx-octopus/rxjs';
 
 @Component({
   selector: 'app-rxjs',
@@ -13,8 +13,17 @@ import { draw, RxjsViewerComponent, RxjsViewerItemComponent } from '@ngx-octopus
 export class RxjsComponent {
   private event1Value = 0;
   private event1Obs$ = new Subject<number>();
+  public observableName = 'Observable de test 1'
 
-  constructor() {}
+  constructor() {
+    this.event1Obs$
+      .pipe(
+        draw(this.observableName)
+      )
+      .subscribe((value) => {
+        console.log('EVENT VALUE ', value);
+      });
+  }
 
   onEvent1Click() {
     this.event1Value += 1;
@@ -29,9 +38,6 @@ export class RxjsComponent {
 
     this.event1Obs$
       .pipe(
-        tap(() => {
-          console.log('ICI');
-        }),
         draw('Observable de test')
       )
       .subscribe((value) => {
